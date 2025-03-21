@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Note</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="note-container">
+    <!-- Mode Lecture -->
+    <div id="view-mode">
+        <h1 th:text="${note.title}"></h1>
+        <div class="note-content">
+            <p id="note-content-view" th:text="${note.content}"></p>
+        </div>
+        <div class="note-meta">
+            <p>Créée le : <span th:text="${#temporals.format(note.createdAt, 'dd/MM à HH:mm')}"></span></p>
+        </div>
+        <button id="edit-button" class="btn-edit">Modifier la note</button>
+        <a href="/home" class="btn-back">Retour à l'accueil</a>
+    </div>
+
+    <!-- Mode Édition -->
+    <div id="edit-mode" style="display: none;">
+        <h1><input type="text" id="note-title-edit" th:value="${note.title}" class="edit-input"></h1>
+        <div class="note-content">
+            <textarea id="note-content-edit" class="edit-textarea" th:text="${note.content}"></textarea>
+        </div>
+        <div class="note-meta">
+            <p>Créée le : <span th:text="${#temporals.format(note.createdAt, 'dd/MM à HH:mm')}"></span></p>
+        </div>
+        <button id="save-button" class="btn-save">Enregistrer</button>
+        <button id="cancel-button" class="btn-cancel">Annuler</button>
+    </div>
+
+    <!-- Formulaire caché pour la soumission sécurisée -->
+    <form id="save-note-form" th:action="@{/notes/{id}/edit(id=${note.id})}" method="post" style="display: none;">
+        <input type="hidden" id="csrf-token" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input type="hidden" id="note-id" th:value="${note.id}">
+        <input type="hidden" id="updated-title" name="title">
+        <input type="hidden" id="updated-content" name="content">
+    </form>
+</div>
+
+<script>
+    // Basculer entre les modes "lecture" et "édition"
+    const viewMode = document.getElementById('view-mode');
+    const editMode = document.getElementById('edit-mode');
+    const editButton = document.getElementById('edit-button');
+    const saveButton = document.getElementById('save-button');
+    const cancelButton = document.getElementById('cancel-button');
+    const noteTitleEdit = document.getElementById('note-title-edit');
+    const noteContentEdit = document.getElementById('note-content-edit');
+    const noteContentView = document.getElementById('note-content-view');
+
+    // Éléments du formulaire caché
+    const saveNoteForm = document.getElementById('save-note-form');
+    const updatedTitleInput = document.getElementById('updated-title');
+    const updatedContentInput = document.getElementById('updated-content');
+    const csrfTokenInput = document.getElementById('csrf-token');
+
+    editButton.addEventListener('click', () => {
+        viewMode.style.display = 'none';
+        editMode.style.display = 'block';
+    });
+
+    cancelButton.addEventListener('click', () => {
+        editMode.style.display = 'none';
+        viewMode.style.display = 'block';
+    });
+
+    saveButton.addEventListener('click', async () => {
+        // Récupérer les valeurs modifiées
+        const updatedTitle = noteTitleEdit.value;
+        const updatedContent = noteContentEdit.value;
+
+        // Mettre à jour le contenu en mode lecture
+        document.querySelector('h1').textContent = updatedTitle;
+        noteContentView.textContent = updatedContent;
+
+        // Basculer en mode lecture
+        editMode.style.display = 'none';
+        viewMode.style.display = 'block';
+
+        // Préparer les données pour la requête
+        updatedTitleInput.value = updatedTitle;
+        updatedContentInput.value = updatedContent;
+
+        // Envoyer la requête AJAX
+        try {
+            const response = await fetch(saveNoteForm.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRF-TOKEN': csrfTokenInput.value, // Inclure le token CSRF
+                },
+                body: new URLSearchParams(new FormData(saveNoteForm)),
+            });i
+        } catch (error) {
+            console.error('Erreur:', error);
+        }
+    });
+</script>
+</body>
+</html>

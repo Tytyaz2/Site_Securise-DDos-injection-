@@ -1,0 +1,273 @@
+/* Couleurs inspirées de la cybersécurité */
+:root {
+    --primary-color: #1a73e8; /* Bleu vif */
+    --secondary-color: #34a853; /* Vert */
+    --background-color: #0d1117; /* Fond sombre */
+    --text-color: #ffffff; /* Texte blanc */
+    --accent-color: #fbbc05; /* Jaune pour les accents */
+    --border-color: #30363d; /* Couleur de bordure */
+}
+
+/* Style général */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Formulaire */
+form {
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 95%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Liste des notes */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+li a {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+li a:hover {
+    color: var(--secondary-color);
+}
+
+/* Page de modification de note */
+.edit-note {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.edit-note h1 {
+    color: var(--primary-color);
+}
+
+.edit-note textarea {
+    height: 150px;
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Message de succès ou d'erreur */
+.message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.message.success {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.message.error {
+    background-color: #ea4335; /* Rouge */
+    color: var(--text-color);
+}
+
+/* Style général pour la page de note */
+.note-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.note-container h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.note-content {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.note-content p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.note-meta {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: var(--secondary-color);
+}
+/* Boutons supplémentaires */
+.btn-edit, .btn-save, .btn-cancel {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+.btn-edit {
+    background-color: var(--accent-color); /* Jaune */
+    color: var(--background-color);
+}
+
+.btn-edit:hover {
+    background-color: #e6a704; /* Jaune plus foncé */
+}
+
+.btn-save {
+    background-color: var(--secondary-color); /* Vert */
+    color: var(--text-color);
+}
+
+.btn-save:hover {
+    background-color: #2d8a4e; /* Vert plus foncé */
+}
+
+.btn-cancel {
+    background-color: #ea4335; /* Rouge */
+    color: var(--text-color);
+}
+
+.btn-cancel:hover {
+    background-color: #c23328; /* Rouge plus foncé */
+}
+
+/* Champs d'édition */
+.edit-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.edit-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+}
